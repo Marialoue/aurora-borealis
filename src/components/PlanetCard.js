@@ -19,6 +19,7 @@ export default function PlanetCard({ planet }) {
         <div class="card-title">
           <p>{planet.title}</p>
         </div>
+        <p>By: {planet.copyright ? planet.copyright : "Unknown"}</p>
         <button class="card-btn">
           <IconButton onClick={handleClick}>
             {status ? (
@@ -28,8 +29,7 @@ export default function PlanetCard({ planet }) {
             )}
           </IconButton>
         </button>
-        <p>By: {planet.copyright ? planet.copyright : "Unknown"}</p>
-        <p class="card__text">{planet.explanation}</p>
+        <p class="card-text">{planet.explanation}</p>
       </div>
     </div>
   );
