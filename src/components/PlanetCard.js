@@ -10,17 +10,22 @@ export default function PlanetCard({ planet }) {
     setStatus((preState) => !preState);
   };
 
+  const img =
+    planet.url.slice(-3) === "jpg"
+      ? planet.url
+      : "../assets/img-not-available.jpg";
+
   return (
     <div className="card">
       <div className="card-content">
-        <div class="card-image">
-          <img src={planet.url} alt={planet.title} />
+        <div className="card-image">
+          <img src={img} alt={planet.titel} />
         </div>
         <div class="card-title">
           <p>{planet.title}</p>
         </div>
         <p>By: {planet.copyright ? planet.copyright : "Unknown"}</p>
-        <div class="card-btn">
+        <div className="card-btn">
           <IconButton onClick={handleClick}>
             {status ? (
               <FavoriteBorderIcon aria-label="Unlike" />
