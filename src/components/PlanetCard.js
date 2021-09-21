@@ -10,14 +10,11 @@ export default function PlanetCard({ planet }) {
     setStatus((preState) => !preState);
   };
 
-
-
   return (
     <div className="card">
       <div className="card-content">
         <div class="card-image">
-        <img src={planet.url}  />
-          {/* <img src={planet.url} alt={planet.title} /> */}
+          <img src={planet.url} alt={planet.title} />
         </div>
         <div class="card-title">
           <p>{planet.title}</p>
