@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
 import styled from "styled-components";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import PlanetCard from "./components/Card";
+import PlanetCardList from "./components/PlanetCardList";
 import "./App.css";
 
-const StyledContainer = styled(Container)`
+const Container = styled("div")`
   height: fit-content;
   padding: 5px;
   margin: auto;
 `;
 
-const Header = styled(Box)`
+const Header = styled("div")`
+  min-height: 64px;
+  padding: 24px;
+  text-align: center;
+  font-size: 20px;
+`;
+
+const Controlls = styled("div")`
   min-height: 64px;
   padding: 24px;
   text-align: center;
@@ -24,7 +29,6 @@ export default function App() {
   const [start, setStart] = useState();
   const [end, setEnd] = useState();
   const [data, setData] = useState();
-  // const [card, setCard] = useState();
 
   const apiKey = process.env.REACT_APP_KEY;
 
@@ -49,26 +53,14 @@ export default function App() {
     }
   };
 
-  const PlanetCardList = (data) => {
-    return (
-      <ul className="cards">
-        {data.data.map((planet, i) => (
-          <li className="cards-item">
-            <PlanetCard key={planet.i} planet={planet} />
-          </li>
-        ))}
-      </ul>
-    );
-  };
-
   return (
-    <StyledContainer>
+    <Container>
       <Header>
         SPACEGRAM
         <br />
         Presenting data from NASA api
       </Header>
-      <Box
+      <Controlls
         component="form"
         sx={{
           display: "flex",
@@ -96,10 +88,14 @@ export default function App() {
         <Button variant="outline" onClick={handleSearch}>
           SEARCH
         </Button>
-      </Box>
+      </Controlls>
       <div className="content">
-        {data ? <PlanetCardList data={data} /> : <h2>hej</h2>}
+        {data ? (
+          <PlanetCardList data={data} />
+        ) : (
+          <h2>placeholder for spinner</h2>
+        )}
       </div>
-    </StyledContainer>
+    </Container>
   );
 }
