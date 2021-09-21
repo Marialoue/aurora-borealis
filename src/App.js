@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import PlanetCardList from "./components/PlanetCardList";
+import Spinner from "./components/Spinner";
 import "./App.css";
 
 export default function App() {
@@ -40,7 +41,7 @@ export default function App() {
           Presenting data from the Astronomy Picture of the Day API from NASA.
           You can read more about it <a href="https://api.nasa.gov/">here</a>.
         </p>
-        <p>Simply enter some dates below to get some Astronomy information</p>
+        <p>Simply enter some dates below to get some astronomy information</p>
       </div>
       <div className="controls">
         <TextField
@@ -62,11 +63,7 @@ export default function App() {
         </Button>
       </div>
       <div className="content">
-        {data ? (
-          <PlanetCardList data={data} />
-        ) : (
-          <h2>placeholder for spinner</h2>
-        )}
+        {data ? <PlanetCardList data={data} /> : <Spinner />}
       </div>
     </div>
   );

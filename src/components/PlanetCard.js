@@ -10,17 +10,20 @@ export default function PlanetCard({ planet }) {
     setStatus((preState) => !preState);
   };
 
+
+
   return (
     <div className="card">
       <div className="card-content">
         <div class="card-image">
-          <img src={planet.url} alt={planet.title} />
+        <img src={planet.url}  />
+          {/* <img src={planet.url} alt={planet.title} /> */}
         </div>
         <div class="card-title">
           <p>{planet.title}</p>
         </div>
         <p>By: {planet.copyright ? planet.copyright : "Unknown"}</p>
-        <button class="card-btn">
+        <div class="card-btn">
           <IconButton onClick={handleClick}>
             {status ? (
               <FavoriteBorderIcon aria-label="Unlike" />
@@ -28,7 +31,7 @@ export default function PlanetCard({ planet }) {
               <FavoriteIcon aria-label="Like" />
             )}
           </IconButton>
-        </button>
+        </div>
         <p class="card-text">{planet.explanation}</p>
       </div>
     </div>
