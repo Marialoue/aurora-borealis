@@ -1,29 +1,8 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import PlanetCardList from "./components/PlanetCardList";
 import "./App.css";
-
-const Container = styled("div")`
-  height: fit-content;
-  padding: 5px;
-  margin: auto;
-`;
-
-const Header = styled("div")`
-  min-height: 64px;
-  padding: 24px;
-  text-align: center;
-  font-size: 20px;
-`;
-
-const Controlls = styled("div")`
-  min-height: 64px;
-  padding: 24px;
-  text-align: center;
-  font-size: 20px;
-`;
 
 export default function App() {
   const [start, setStart] = useState();
@@ -54,23 +33,16 @@ export default function App() {
   };
 
   return (
-    <Container>
-      <Header>
-        SPACEGRAM
-        <br />
-        Presenting data from NASA api
-      </Header>
-      <Controlls
-        component="form"
-        sx={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          bgcolor: "background.paper",
-          "& > :not(style)": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
+    <div className="container">
+      <div className="header">
+        <p>SPACEGRAM</p>
+        <p>
+          Presenting data from the Astronomy Picture of the Day API from NASA.
+          You can read more about it <a href="https://api.nasa.gov/">here</a>.
+        </p>
+        <p>Simply enter some dates below to get some Astronomy information</p>
+      </div>
+      <div className="controls">
         <TextField
           id="outlined-basic"
           label="Start date"
@@ -88,7 +60,7 @@ export default function App() {
         <Button variant="outline" onClick={handleSearch}>
           SEARCH
         </Button>
-      </Controlls>
+      </div>
       <div className="content">
         {data ? (
           <PlanetCardList data={data} />
@@ -96,6 +68,6 @@ export default function App() {
           <h2>placeholder for spinner</h2>
         )}
       </div>
-    </Container>
+    </div>
   );
 }
