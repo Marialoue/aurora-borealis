@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import PlanetCardList from "./components/PlanetCardList";
 import Spinner from "./components/Spinner";
+import FrontPlanet from "./components/FrontPlanet";
 import "./App.css";
 
 export default function App() {
   const [start, setStart] = useState();
   const [end, setEnd] = useState();
   const [data, setData] = useState();
+  const [status, setStatus] = useState(false);
+  // status is used for setting loading status in order to show the spinner before the data is fetched
 
   const apiKey = process.env.REACT_APP_KEY;
 
   const url = `https://api.nasa.gov/planetary/apod?start_date=${start}&end_date=${end}&api_key=${apiKey}`;
 
   const handleSearch = (event) => {
+    setStatus(true);
     start && end
       ? fetchData(event)
       : alert("You forgot to enter " + (start ? "end date" : "start date"));
@@ -39,7 +43,7 @@ export default function App() {
           Presenting data from the Astronomy Picture of the Day API from NASA.
           You can read more about it <a href="https://api.nasa.gov/">here</a>.
         </p>
-        <p>Simply enter some dates below to get some astronomy information</p>
+        <p>Enter some dates below to get some astronomy information.</p>
       </div>
       <div className="controls">
         <div>
@@ -71,10 +75,14 @@ export default function App() {
         </button>
       </div>
       <div className="content">
-        {data ? <PlanetCardList data={data} /> : <Spinner />}
+        {data ? (
+          <PlanetCardList data={data} />
+        ) : status ? (
+          <Spinner />
+        ) : (
+          <FrontPlanet />
+        )}
       </div>
     </div>
   );
 }
-
-// get APOD as "front" and spinner when loading data

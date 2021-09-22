@@ -54,9 +54,6 @@ input {
 }
 
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   background-color: transparent;
   min-width: 64px;
   margin: 5px;
@@ -67,7 +64,6 @@ input {
   letter-spacing: 0.02857em;
   text-transform: uppercase;
   cursor: pointer;
-  outline: red none 3px;
   border: 1px solid #999;
   border-radius: 5px;
 }

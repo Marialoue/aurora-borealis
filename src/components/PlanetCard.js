@@ -34,7 +34,7 @@ export default function PlanetCard({ planet }) {
             )}
           </IconButton>
         </div>
-        <p class="card-text">{planet.explanation}</p>
+        <p className="card-text">{planet.explanation}</p>
       </div>
     </div>
   );
