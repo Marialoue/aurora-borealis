@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import PlanetCardList from "./components/PlanetCardList";
 import Spinner from "./components/Spinner";
 import "./App.css";
@@ -26,7 +24,7 @@ export default function App() {
     const response = await fetch(url);
     if (response.status === 200) {
       const res = await response.json();
-      console.log("res: ", res);
+      // console.log("res: ", res);
       setData(res);
     } else {
       throw new Error("Unable to fetch data");
@@ -44,23 +42,33 @@ export default function App() {
         <p>Simply enter some dates below to get some astronomy information</p>
       </div>
       <div className="controls">
-        <TextField
-          id="outlined-basic"
-          label="Start date"
-          variant="outlined"
-          placeholder={"yyyy-mm-dd"}
-          onChange={(e) => setStart(e.target.value)}
-        />
-        <TextField
-          id="outlined-basic"
-          label="End date"
-          variant="outlined"
-          placeholder={"yyyy-mm-dd"}
-          onChange={(e) => setEnd(e.target.value)}
-        />
-        <Button variant="outline" onClick={handleSearch}>
-          SEARCH
-        </Button>
+        <div>
+          <span>
+            <label for="start">Start date</label>
+          </span>
+          <input
+            type="date"
+            id="start"
+            placeholder={"yyyy-mm-dd"}
+            onChange={(e) => setStart(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <span>
+            <label for="end">End date</label>{" "}
+            <input
+              type="date"
+              id="end"
+              placeholder={"yyyy-mm-dd"}
+              onChange={(e) => setEnd(e.target.value)}
+            />
+          </span>
+        </div>
+
+        <button className="btn" onClick={handleSearch}>
+          Search
+        </button>
       </div>
       <div className="content">
         {data ? <PlanetCardList data={data} /> : <Spinner />}
@@ -68,3 +76,5 @@ export default function App() {
     </div>
   );
 }
+
+// get APOD as "front" and spinner when loading data
