@@ -16,13 +16,13 @@ export default function App() {
   const url = `https://api.nasa.gov/planetary/apod?start_date=${start}&end_date=${end}&api_key=${apiKey}`;
 
   const handleSearch = (event) => {
-    setStatus(true);
     start && end
       ? fetchData(event)
       : alert("You forgot to enter " + (start ? "end date" : "start date"));
   };
 
   const fetchData = async (event) => {
+    setStatus(true);
     event.preventDefault();
 
     const response = await fetch(url);
@@ -53,6 +53,7 @@ export default function App() {
           <input
             type="date"
             id="start"
+            required={true}
             placeholder={"yyyy-mm-dd"}
             onChange={(e) => setStart(e.target.value)}
           />
@@ -60,10 +61,11 @@ export default function App() {
 
         <div>
           <span>
-            <label for="end">End date</label>{" "}
+            <label for="end">End date</label>
             <input
               type="date"
               id="end"
+              required={true}
               placeholder={"yyyy-mm-dd"}
               onChange={(e) => setEnd(e.target.value)}
             />
