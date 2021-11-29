@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PlanetCardList from "./components/PlanetCardList";
 import Spinner from "./components/Spinner";
-import FrontPlanet from "./components/FrontPlanet";
 import "./App.css";
 
 export default function App() {
@@ -21,6 +20,8 @@ export default function App() {
       : alert("You forgot to enter " + (start ? "end date" : "start date"));
   };
 
+  // add local storage to save like/unlike
+
   const fetchData = async (event) => {
     setStatus(true);
     event.preventDefault();
@@ -36,55 +37,56 @@ export default function App() {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <p>SPACEGRAM</p>
-        <p>
-          Presenting data from the Astronomy Picture of the Day API from NASA.
-          You can read more about it <a href="https://api.nasa.gov/">here</a>.
-        </p>
-        <p>Enter some dates below to get some astronomy information.</p>
-      </div>
-      <div className="controls">
-        <div>
-          <span>
-            <label for="start">Start date</label>
-          </span>
-          <input
-            type="date"
-            id="start"
-            required={true}
-            placeholder={"yyyy-mm-dd"}
-            onChange={(e) => setStart(e.target.value)}
-          />
-        </div>
+    <main className="main">
+      <header className="header">
+        <h2>Spacestagram</h2>
+        <hgroup>
+          <p>
+            Presenting data from the Astronomy Picture of the Day API from NASA.{" "}
+            <a
+              href="https://api.nasa.gov/"
+              title="Information about APIs from NASA."
+              rel="noreferrer"
+            >
+              Find out more about APOD
+            </a>
+            . Enter start and end dates below to get some astronomy information.
+          </p>
+        </hgroup>
+      </header>
 
-        <div>
-          <span>
-            <label for="end">End date</label>
-            <input
-              type="date"
-              id="end"
-              required={true}
-              placeholder={"yyyy-mm-dd"}
-              onChange={(e) => setEnd(e.target.value)}
-            />
-          </span>
-        </div>
+      <nav></nav>
 
-        <button className="btn" onClick={handleSearch}>
-          Search
-        </button>
-      </div>
-      <div className="content">
-        {data ? (
-          <PlanetCardList data={data} />
-        ) : status ? (
-          <Spinner />
-        ) : (
-          <FrontPlanet />
-        )}
-      </div>
-    </div>
+      <form className="controls">
+        <label for="start">Start date</label>
+        <input
+          type="date"
+          id="start"
+          required={true}
+          onKeyDown={(e) => setStart(e.target.value)}
+          onChange={(e) => setStart(e.target.value)}
+        />
+
+        <label>End date</label>
+        <input
+          type="date"
+          id="end"
+          required={true}
+          onKeyDown={(e) => setEnd(e.target.value)}
+          onChange={(e) => setEnd(e.target.value)}
+        />
+
+        <input
+          className="btn"
+          type="submit"
+          value="Search"
+          onKeyDown={handleSearch}
+          onClick={handleSearch}
+        />
+      </form>
+      <article className="content">
+        {data ? <PlanetCardList data={data} /> : status ? <Spinner /> : null}
+      </article>
+    </main>
   );
 }
