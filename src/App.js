@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PlanetCardList from "./components/PlanetCardList";
 import Spinner from "./components/Spinner";
-import "./App.css";
 
 export default function App() {
   const [start, setStart] = useState();
@@ -45,12 +44,12 @@ export default function App() {
             Presenting data from the Astronomy Picture of the Day API from NASA.{" "}
             <a
               href="https://api.nasa.gov/"
-              title="Information about APIs from NASA."
+              title="Information about the APOD API from NASA."
               rel="noreferrer"
             >
               Find out more about APOD
             </a>
-            . Enter start and end dates below to get some astronomy information.
+            . The archive goes from current date through June 16, 1995.
           </p>
         </hgroup>
       </header>
@@ -58,25 +57,34 @@ export default function App() {
       <nav></nav>
 
       <form className="controls">
-        <label for="start">Start date</label>
-        <input
-          type="date"
-          id="start"
-          required={true}
-          onKeyDown={(e) => setStart(e.target.value)}
-          onChange={(e) => setStart(e.target.value)}
-        />
+        <label for="start">
+          Start date
+          <input
+            type="text"
+            id="start"
+            placeholder="YYYY-MM-DD"
+            required={true}
+            onKeyDown={(e) => setStart(e.target.value)}
+            onChange={(e) => setStart(e.target.value)}
+          />
+        </label>
 
-        <label>End date</label>
-        <input
-          type="date"
-          id="end"
-          required={true}
-          onKeyDown={(e) => setEnd(e.target.value)}
-          onChange={(e) => setEnd(e.target.value)}
-        />
+        <label>
+          End date
+          <input
+            type="text"
+            // disable future dates
+            // make date picker
+            id="end"
+            placeholder="YYYY-MM-DD"
+            required={true}
+            onKeyDown={(e) => setEnd(e.target.value)}
+            onChange={(e) => setEnd(e.target.value)}
+          />
+        </label>
 
         <input
+          
           className="btn"
           type="submit"
           value="Search"

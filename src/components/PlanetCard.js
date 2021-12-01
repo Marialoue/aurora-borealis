@@ -10,21 +10,31 @@ export default function PlanetCard({ planet }) {
     setStatus((preState) => !preState);
   };
 
-  const img =
-    planet.url.slice(-3) === "jpg"
-      ? planet.url
-      : "../assets/img-not-available.jpg";
+  // const img =
+  //   planet.url.slice(-3) === "jpg"
+  //     ? planet.url
+  //     : "../assets/img-not-available.jpg";
+
+  const imgOrVid = () => {
+    if (planet.url.slice(-3) === "jpg")
+      return <img src={planet.url} alt={planet.title} />;
+    else if (planet.url.slice(-1) === "0")
+      return (
+        <iframe title={planet.title} src={planet.url} alt={planet.title} />
+      );
+  };
 
   return (
-    <div className="card">
+    <section className="card">
       <div className="card-content">
         <div className="card-image">
-          <img src={img} alt={planet.titel} />
+          {imgOrVid()}
         </div>
-        <div class="card-title">
+        <div className="card-title">
           <p>{planet.title}</p>
         </div>
         <p>By: {planet.copyright ? planet.copyright : "Unknown"}</p>
+        <p>Date: {planet.date}</p>
         <div className="card-btn">
           <IconButton onClick={handleClick}>
             {status ? (
@@ -36,6 +46,6 @@ export default function PlanetCard({ planet }) {
         </div>
         <p className="card-text">{planet.explanation}</p>
       </div>
-    </div>
+    </section>
   );
 }
