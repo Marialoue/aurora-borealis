@@ -16,9 +16,9 @@ export default function PlanetCard({ planet }) {
   //     : "../assets/img-not-available.jpg";
 
   const imgOrVid = () => {
-    if (planet.url.slice(-3) === "jpg")
+    if (planet.media_type === "image")
       return <img src={planet.url} alt={planet.title} />;
-    else if (planet.url.slice(-1) === "0")
+    else if (planet.media_type === "video")
       return (
         <iframe title={planet.title} src={planet.url} alt={planet.title} />
       );
@@ -27,9 +27,7 @@ export default function PlanetCard({ planet }) {
   return (
     <section className="card">
       <div className="card-content">
-        <div className="card-image">
-          {imgOrVid()}
-        </div>
+        <div className="card-image">{imgOrVid()}</div>
         <div className="card-title">
           <p>{planet.title}</p>
         </div>
