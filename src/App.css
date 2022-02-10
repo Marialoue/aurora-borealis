@@ -111,7 +111,7 @@ input:focus {
 .content {
   min-height: 64px;
   padding: 10px;
-  text-align: justify;
+  text-align: center;
 }
 
 .cards {
