@@ -31,17 +31,19 @@ export default function PlanetCard({ planet }) {
         <div className="card-title">
           <p>{planet.title}</p>
         </div>
-        <p>By: {planet.copyright ? planet.copyright : "Unknown"}</p>
-        <p>Date: {planet.date}</p>
-        <div className="card-btn">
-          <IconButton onClick={handleClick}>
-            {status ? (
-              <FavoriteBorderIcon aria-label="Unlike" />
-            ) : (
-              <FavoriteIcon aria-label="Like" />
-            )}
-          </IconButton>
-        </div>
+        <span>
+          <p>By: {planet.copyright ? planet.copyright : "Unknown"}</p>
+          <p>Date: {planet.date}</p>
+          <div className="card-btn">
+            <IconButton onClick={handleClick}>
+              {status ? (
+                <FavoriteBorderIcon aria-label="Unlike" />
+              ) : (
+                <FavoriteIcon aria-label="Like" />
+              )}
+            </IconButton>
+          </div>
+        </span>
         <p className="card-text">{planet.explanation}</p>
       </div>
     </section>

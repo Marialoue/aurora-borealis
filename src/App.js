@@ -35,6 +35,8 @@ export default function App() {
     }
   };
 
+  // add date validation if date is in future or before june 16, 1995.
+
   return (
     <main className="main">
       <header className="header">
@@ -49,12 +51,12 @@ export default function App() {
             >
               Find out more about APOD
             </a>
-            . The archive goes from current date through June 16, 1995.
+            .
+            <br />
+            The archive goes from current date through June 16, 1995.
           </p>
         </hgroup>
       </header>
-
-      <nav></nav>
 
       <form className="controls">
         <label for="start">
@@ -84,7 +86,6 @@ export default function App() {
         </label>
 
         <input
-          
           className="btn"
           type="submit"
           value="Search"
@@ -92,9 +93,9 @@ export default function App() {
           onClick={handleSearch}
         />
       </form>
-      <article className="content">
+      <section className="content">
         {data ? <PlanetCardList data={data} /> : status ? <Spinner /> : null}
-      </article>
+      </section>
     </main>
   );
 }
