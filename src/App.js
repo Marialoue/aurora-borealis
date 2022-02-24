@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import FrontPlanet from "./components/FrontPlanet";
 import PlanetCardList from "./components/PlanetCardList";
 import Spinner from "./components/Spinner";
 
 export default function App() {
+  // TODO: clean up and divide to separate functional components
+
   const [start, setStart] = useState();
   const [end, setEnd] = useState();
   const [data, setData] = useState();
   const [status, setStatus] = useState(false);
-  // status is used for setting loading status in order to show the spinner before the data is fetched
 
   const apiKey = process.env.REACT_APP_KEY;
 
@@ -19,8 +21,6 @@ export default function App() {
       : alert("You forgot to enter " + (start ? "end date" : "start date"));
   };
 
-  // add local storage to save like/unlike
-
   const fetchData = async (event) => {
     setStatus(true);
     event.preventDefault();
@@ -28,14 +28,11 @@ export default function App() {
     const response = await fetch(url);
     if (response.status === 200) {
       const res = await response.json();
-      // console.log("res: ", res);
       setData(res);
     } else {
       throw new Error("Unable to fetch data");
     }
   };
-
-  // add date validation if date is in future or before june 16, 1995.
 
   return (
     <main className="main">
@@ -75,6 +72,7 @@ export default function App() {
           End date
           <input
             type="text"
+            // TODO: add date validation if date is in future or before june 16, 1995.
             // disable future dates
             // make date picker
             id="end"
@@ -94,7 +92,7 @@ export default function App() {
         />
       </form>
       <section className="content">
-        {data ? <PlanetCardList data={data} /> : status ? <Spinner /> : null}
+        {data ? <PlanetCardList data={data} /> : status ? <Spinner /> : <FrontPlanet />}
       </section>
     </main>
   );

@@ -5,15 +5,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 export default function PlanetCard({ planet }) {
+  // TODO: add local storage to save like/unlike
   const [status, setStatus] = useState(true);
   const handleClick = () => {
     setStatus((preState) => !preState);
   };
-
-  // const img =
-  //   planet.url.slice(-3) === "jpg"
-  //     ? planet.url
-  //     : "../assets/img-not-available.jpg";
 
   const imgOrVid = () => {
     if (planet.media_type === "image")
@@ -23,6 +19,7 @@ export default function PlanetCard({ planet }) {
         <iframe title={planet.title} src={planet.url} alt={planet.title} />
       );
   };
+  // TODO: If no img / vid return 'img-not-available'
 
   return (
     <section className="card">
