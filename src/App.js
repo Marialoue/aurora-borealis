@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import Header from "./components/Header";
 import FrontPlanet from "./components/FrontPlanet";
 import PlanetCardList from "./components/PlanetCardList";
+import Footer from "./components/Footer";
 import Spinner from "./components/Spinner";
 
 export default function App() {
@@ -36,25 +38,22 @@ export default function App() {
 
   return (
     <main className="main">
-      <header className="header">
-        <h2>Spacestagram</h2>
-        <hgroup>
-          <p>
-            Presenting data from the Astronomy Picture of the Day API from NASA.{" "}
-            <a
-              href="https://api.nasa.gov/"
-              title="Information about the APOD API from NASA."
-              rel="noreferrer"
-            >
-              Find out more about APOD
-            </a>
-            .
-            <br />
-            The archive goes from current date through June 16, 1995.
-          </p>
-        </hgroup>
-      </header>
-
+      <Header />
+      <span className="description">
+        <p>
+          Presenting data from the Astronomy Picture of the Day API from NASA.{" "}
+          <a
+            href="https://api.nasa.gov/"
+            title="Information about the APOD API from NASA."
+            rel="noreferrer"
+          >
+            Find out more about APOD
+          </a>
+          .
+          <br />
+          The archive goes from current date through June 16, 1995.
+        </p>
+      </span>
       <form className="controls">
         <label for="start">
           Start date
@@ -92,8 +91,15 @@ export default function App() {
         />
       </form>
       <section className="content">
-        {data ? <PlanetCardList data={data} /> : status ? <Spinner /> : <FrontPlanet />}
+        {data ? (
+          <PlanetCardList data={data} />
+        ) : status ? (
+          <Spinner />
+        ) : (
+          <FrontPlanet />
+        )}
       </section>
+      <Footer/>
     </main>
   );
 }
